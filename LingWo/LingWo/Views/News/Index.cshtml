@@ -1,0 +1,119 @@
+@model IEnumerable<LingWo.Models.Article>
+@{
+    ViewBag.Title = "News";
+}
+@if (Model.Count() > 0)
+{
+    <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Նորություններ</h3>
+                <div class="card-tools">
+                    <form>
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            @* <input id="search-input" type="text" name="table_search" class="form-control float-right"
+                            placeholder="Search"> *@
+                            @* <select name="filter" id="filter" asp-items="@Model.UserSelectedList" class="form-control
+                            float-right">
+                            <option value="Null"> </option>
+                            </select> *@
+                            @* <div class="input-group-append">
+                            <button id="search-btn" type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                            </button>
+                            </div> *@
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <a asp-controller="News" asp-action="Create" class="btn btn-primary">Ավելացնել</a>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Վերնագիր</th>
+                            <th>Գործողություններ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="news">
+                        @foreach (var article in Model)
+                            {
+                                <tr class="article-item" data-id="@article.Id">
+                                    <td>@article.Id</td>
+                                    <td>@article.Title</td>
+                                    <td>
+                                        <a asp-controller="News" asp-action="Edit" asp-route-Id="@article.Id"
+                                            class="btn btn-primary">
+                                            <i class="fas fa-solid fa-pencil"></i>
+                                        </a>
+                                        <a id="article-delete-btn" class="btn btn-danger" onclick="showDeleteAlert(this, @article.Id)">
+                                            <i class="fas fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+}
+else
+{
+    <h1>Նորություններ գտված չեն!</h1>
+    <a asp-controller="News" asp-action="Create" class="btn btn-primary">Ավելացնել</a>
+}
+
+@section Scripts {
+    <script>
+        function showDeleteAlert(e, id) {
+            Swal.fire({
+                title: 'Վստահ եք?',
+                text: "Դուք չեք կարող ետ վերադարջնել սա!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Այո, ջնջել սա!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "@Url.Action("Delete")",
+                        type: 'GET',
+                        data: { id: id },
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.status || res.value != null) {
+                                deleteArticle(res);
+                                Swal.fire('Ջնջված է!', 'Լուրը գաջողությամբ ջնջված է', 'success');
+                            } else {
+                                Swal.fire("Սխալ!", res.message, 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire("Սխալ!", "Տեղի է ունեցել սխալ, խնդրում ենք կրկին փորձել!", 'error');
+                        }
+                    })
+                }
+            })
+        }
+
+        let deleteArticle = (article) => {
+            let id = article.value.id;
+            var news = document.getElementsByClassName('article-item');
+
+            for (let i = 0; i < news.length; i++) {
+                if (news[i].dataset.id == id) {
+                    news[i].remove();
+                }
+            }
+        }
+    </script>
+}

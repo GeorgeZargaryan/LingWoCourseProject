@@ -1,0 +1,50 @@
+@model LingWo.Models.Article
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Ավելացնել լուր</h3>
+    </div>
+    <form asp-controller="News" asp-action="Create" method="post">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="title">Վերնագիր</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
+            </div>
+            <div class="form-group">
+                <label for="link">Հղում</label>
+                <input type="text" class="form-control" id="link" name="link" placeholder="Enter Link" required>
+            </div>
+            <div class="form-group">
+                <label for="thumbnail">Կրճատ նկարագրություն</label>
+                <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="Enter Thumbnail" required>
+            </div>
+            <div class="form-group">
+                <label for="uploadDate">Ամսաթիվ</label>
+                <input type="date" class="form-control" id="uploadDate" name="uploadDate" required>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+
+        $(".products-tokenizer").select2({
+            tags: true,
+            tokenSeparators: [',', ' ']
+        })
+
+    </script>
+}

@@ -1,0 +1,110 @@
+@model IEnumerable<LingWo.Models.Video>
+@{
+    ViewBag.Title = "Videos";
+}
+@if (Model.Count() > 0)
+{
+    <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Տեսանյութեր</h3>
+                <div class="card-tools">
+                    <form>
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <a asp-controller="Video" asp-action="Create" class="btn btn-primary">Ավելացնել</a>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Վերնագիր</th>
+                            <th>Գործողություններ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="videos">
+                        @foreach (var video in Model)
+                            {
+                                <tr class="video-item" data-id="@video.Id">
+                                    <td>@video.Id</td>
+                                    <td>@video.Title</td>
+                                    <td>
+                                        <a asp-controller="Video" asp-action="Edit" asp-route-Id="@video.Id"
+                                            class="btn btn-primary">
+                                            <i class="fas fa-solid fa-pencil"></i>
+                                        </a>
+                                        <a id="video-delete-btn" class="btn btn-danger"
+                                            onclick="showDeleteAlert(this, @video.Id)">
+                                            <i class="fas fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+}
+else
+{
+    <h1>Տեսանյութեր չեն գտնվել!</h1>
+    <a asp-controller="Video" asp-action="Create" class="btn btn-primary">Ավելացնել</a>
+}
+
+@section Scripts {
+    <script>
+
+        function showDeleteAlert(e, id) {
+            Swal.fire({
+                title: 'Վստահ եք?',
+                text: "Դուք չեք կարող ետ վերադարջնել սա!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Այո, ջնջել սա!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "@Url.Action("Delete")",
+                        type: 'GET',
+                        data: { id: id },
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.status || res.value != null) {
+                                deleteVideo(res);
+                                Swal.fire('Ջնջված է!', 'Տեսանյութը գաջողությամբ ջնջված է', 'success');
+                            } else {
+                                Swal.fire("Սխալ!", res.message, 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire("Սխալ!", "Տեղի է ունեցել սխալ, խնդրում ենք կրկին փորձել!", 'error');
+                        }
+                    })
+                }
+            })
+        }
+
+        let deleteVideo = (video) => {
+            let id = video.value.id;
+            var videos = document.getElementsByClassName('video-item');
+
+            for (let i = 0; i < videos.length; i++) {
+                if (videos[i].dataset.id == id) {
+                    videos[i].remove();
+                }
+            }
+        }
+    </script>
+}

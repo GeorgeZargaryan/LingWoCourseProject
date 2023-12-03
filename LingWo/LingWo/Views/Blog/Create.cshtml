@@ -1,0 +1,78 @@
+@model LingWo.Models.ViewModels.BlogVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Ավելացնել բլոգ</h3>
+    </div>
+    <form asp-controller="Blog" asp-action="Create" method="post">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="blogTitle">Վերնագիր</label>
+                <input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="Enter Title" required>
+            </div>
+            <div class="form-group">
+                <label for="blogImage">Նկար</label>
+                <input type="text" class="form-control" id="blogImage" name="blogImage" placeholder="Enter Image" required>
+            </div>
+            <div class="form-group">
+                <label for="blogLink">Հղում</label>
+                <input type="text" class="form-control" id="blogLink" name="blogLink" placeholder="Enter Link" required>
+            </div>
+            <div class="form-group">
+                <label for="blogAuthor">Հեղինակ</label>
+                <input type="text" class="form-control" id="blogAuthor" name="blogAuthor" placeholder="Enter Author" required>
+            </div>
+            <div class="form-group">
+                <label for="blogDate">Ամսաթիվ</label>
+                <input type="Date" class="form-control" id="blogDate" name="blogDate" required>
+            </div>
+            <div class="form-group">
+                <label for="blogThumb">Thumb</label>
+                <input type="text" class="form-control" id="blogThumb" name="blogThumb" placeholder="Enter Thumb" required>
+            </div>
+            <div class="form-group">
+                <label for="blogContent">Content</label>
+                <textarea class="form-control" name="blogContent" id="blogContent" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="relatedIds[]">Related Blogs</label>
+                <input type="hidden" name="relatedIds" id="relatedIds">
+                <select class="form-control" name="relatedBlogs" id="relatedBlogs" multiple asp-items="@Model.RelatedBlogs" onchange="changeSelect(event)"></select>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+
+        $("#relatedBlogs").select2({
+            tags: true,
+            tokenSeparators: [',', ' ']
+        })
+
+        let ids = [@Model.Blog.RelatedIds];
+
+        $("#relatedBlogs").val(ids).select2();
+
+        function changeSelect(event){
+            var select2Value = $(event.target).val();
+            $("#relatedIds").val(select2Value);
+            console.log(select2Value);
+        }
+
+    </script>
+}

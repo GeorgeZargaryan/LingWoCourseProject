@@ -1,0 +1,27 @@
+@model LingWo.Models.Video
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Ավելացնել տեսանյութ</h3>
+    </div>
+    <form asp-controller="Video" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="title">Վերնագիր</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
+            </div>
+            <div class="form-group" style="margin-top: 50px;">
+                <label for="link" class="form-label">Կցել տեսանյութ</label>
+                <input class="form-control" name="link" type="file" id="video-input" accept=".mov, .mp4">
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

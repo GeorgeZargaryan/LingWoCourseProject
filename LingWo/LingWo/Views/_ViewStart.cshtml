@@ -1,0 +1,21 @@
+﻿@using LingWo.Utility
+
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole(WC.AdminRole))
+        {
+            Layout = "_AdminLayout";
+        }
+
+        if (User.IsInRole(WC.UserRole))
+        {
+            Layout = "_Layout";
+        }
+    }
+    else
+    {
+        @* Layout = "_AdminLayout"; *@
+        Layout = "_Layout";
+    }
+}

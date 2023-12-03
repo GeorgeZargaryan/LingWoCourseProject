@@ -1,0 +1,4 @@
+*.dll binary
+*.json text
+
+* text=auto

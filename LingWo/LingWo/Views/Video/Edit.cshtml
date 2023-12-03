@@ -1,0 +1,36 @@
+@model LingWo.Models.Video
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Edit Video</h3>
+    </div>
+    <form asp-controller="Video" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <input type="hidden" name="id" value="@Model.Id">
+            <div class="form-group">
+                <label for="title">Վերնագիր</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" value="@Model.Title" required>
+            </div>
+            <div class="form-group" style="margin-top: 50px;">
+                @if(Model.Link != null)
+                {
+                    <video width="560" height="315" controls>
+                        <source src="@LingWo.Utility.WC.VideoPath/@Model.Link" type="video/webm">
+                    </video>
+                    <a asp-controller="Video" asp-action="RemoveVideo" asp-route-Id="@Model.Id" class="btn btn-danger">Remove</a>
+                }
+                <br>
+                <label for="link" class="form-label">Կցել տեսանյութ</label>
+                <input class="form-control" name="link" type="file" id="link" accept=".mov, .mp4">
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

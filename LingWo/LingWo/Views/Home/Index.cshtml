@@ -1,0 +1,511 @@
+﻿@using LingWo.Utility
+@model IEnumerable<LingWo.Models.Video>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (User.IsInRole(WC.AdminRole))
+{
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Ինֆորմացիոն վահանակ</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Գլխավոր</a></li>
+                    <li class="breadcrumb-item active">Ինֆորմացիոն վահանակ</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+    <!-- /.content-header -->
+
+
+    <!-- Small boxes (Stat box) -->
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewData["ArticlesCount"]</h3>
+
+                    <p>Նորություններ</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a asp-controller="News" asp-action="Index" class="small-box-footer">Ավելին <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>@ViewData["BlogsCount"]</h3>
+
+                    <p>Բլոգ</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a asp-controller="Blog" asp-action="Index" class="small-box-footer">Ավելին <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>@ViewData["UsersCount"]</h3>
+
+                    <p>Հաշիվներ</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a asp-controller="User" asp-action="Index" class="small-box-footer">Ավելին<i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>@ViewData["CommentsCount"]</h3>
+
+                    <p>Մեկնաբանություններ</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a asp-controller="Comment" asp-action="Index" class="small-box-footer">Ավելին <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+</div>
+}
+else
+{
+    <section class="main-section">
+    <div class="main-image">
+        <div class="container-custom ">
+            <div class="main-content">
+                <h1 id="main-text">Բարի գալուստ «LingWo» լեզուների առցանց դպրոց</h1>
+                <h4 id="secondary-text">Մենք ձեզ համար կընտրենք ուսուցման անհատական ​​մեթոդ և նյութեր: «LingWo»
+                    դպրոցում,
+                    դուք կծանոթանաք ոչ միայն լեզվին, այլև մշակույթին, գրականությանը,
+                    պատմություն և արվեստին</h4>
+                <h5 id="select-language">Ընտրեք լեզու սովորելու համար</h5>
+
+                <div class="get-started">
+                    <div class="dropdown languages-selector">
+                        <button class="btn dropdown-toggle language-btn" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="~/img/main/England.svg" alt="">
+                            Անգլերեն
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <img src="~/img/main/Japanese.svg" alt="">
+                                    Ճապոներեն
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn-main">Սկսել</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="about-section">
+    <div class="container-custom ">
+        <div class="about">
+            <h2 class="block-title about-classes">Դասերը «Lingwo»-ում:</h2>
+            <div class="info-block">
+                <div class="info-small">
+                    <img class="info-image" src="~/img/about/Child.jpg" alt="">
+                    <h4 class="info-title">Արդյունավետ առցանց դասեր</h4>
+                    <h5 class="info-text">Առցանց դասեր Google Meet-ում, 60 րոպե տևողությամբ։
+                        Դասերի օրերը և դասընթացի տևողությունը համաձայնեցված են
+                        ուսուցչի և աշակերտի միջև.</h5>
+                </div>
+                <div class="info-small">
+                    <img class="info-image" src="~/img/about/OnlineMeeting.jpg" alt="">
+                    <h4 class="info-title">Խմբակային կամ մասնավոր պարապմունքներ</h4>
+                    <h5 class="info-text">Սովորեք մինչև 5 ուսանողից բաղկացած փոքր խմբերում կամ
+                        մասնավոր պարապմունքներով լրացուցիչ ինտենսիվության համար:</h5>
+                </div>
+                <div class="info-small">
+                    <img class="info-image" src="~/img/about/Girl.jpg" alt="">
+                    <h4 class="info-title">Սկսնակից մինչև առաջադեմ</h4>
+                    <h5 class="info-text">Ընտրեք այն մակարդակը, որը լավագույնս համապատասխանում է ձեզ: Մեր որակավորված ուսուցիչները կստեղծեն
+                        ընկերական մթնոլորտ ձեզ համար, որն կօգնի ձեզ կատարելապես տիրապետել լեզվին:</h5>
+                </div>
+                <div class="info-small">
+                    <img class="info-image" src="~/img/about/Man.jpg" alt="">
+                    <h4 class="info-title">Դասերի ճկուն գրաֆիկ</h4>
+                    <h5 class="info-text">Դպրոցն ապահովում է դասերի ճկուն գրաֆիկ:
+                        Անկախ նրանից՝ դուք դպրոցում եք, թե աշխատում եք, մեր ուսուցիչները ձեր դասաժամերը կհամապատասխանեցնեն ձեր
+                        ժամանակացույցին։</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="blog-section">
+    <div class="container-custom">
+        <h2 class="block-title blog">Բլոգ</h2>
+        <div class="blogs-block">
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/BlogJapanese.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Փետր 2, 2023</h6>
+                    <h4 class="blog-title">Ճապոնիա</h4>
+                    <h6 class="blog-thumbnail">Եթե ​​որոշել եք սկսել սովորել ճապոնական լեզուն և մշակույթը,
+                        մենք ուրախ կլինենք օգնել ձեզ այս հարցում:
+                        Ճապոներենի հետ ծանոթությունը պետք է սկսել...</h6>
+                </div>
+            </div>
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/Calligraphy.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Փետր 1, 2023</h6>
+                    <h4 class="blog-title">Կալիգրաֆիա</h4>
+                    <h6 class="blog-thumbnail">Երբ սկսում ես ճապոներեն սովորել, պետք է պատրաստ լինես շատ հիերոգլիֆների սովորել
+                         մոտ 6000: Ոչպեսզի կարողանաս շփվել, ֆիլմեր դիտել, կարդալ և...</h6>
+                </div>
+            </div>
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/Kinkakuju.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Հունվ 31, 2023</h6>
+                    <h4 class="blog-title">Ոսկե տաղավար - Կինկակուջի</h4>
+                    <h6 class="blog-thumbnail">«Ոսկե տաղավարը» կամ «Kinkakuji»-ն բուդդայականների շտեմարան է
+                        մասունքները ճապոնական Կիոտո քաղաքի Ռոկուոնջի տաճարային համալիրի տարածքում...</h6>
+                </div>
+            </div>
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/Samurai.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Հունվ 28, 2023</h6>
+                    <h4 class="blog-title">Սամուրայ</h4>
+                    <h6 class="blog-thumbnail">Samurai 侍-ն ճապոնական ռազմաֆեոդալական կալվածք է։ «Սամուրայ» բառը
+                        գալիս է հին ճապոնական «սամուրայ» բայից, որը նշանակում է «ծառայել մարդուն...</h6>
+                </div>
+            </div>
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/TraditionalHouse.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Հունվ 27, 2023</h6>
+                    <h4 class="blog-title">Ճապոնական ավանդական տուն</h4>
+                    <h6 class="blog-thumbnail">Եթե ​​ձեզ դուր չի գալիս վառ գույներով լցված սենյակի ինտերիերը,
+                        և հսկայական քանակությամբ կահույք, այնուհետև ձեզ կհետաքրքրի պատմությունը...</h6>
+                </div>
+            </div>
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/HayaoMiyazaki.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Հունվ 25, 2023</h6>
+                    <h4 class="blog-title">Հայաո Միյաձակի</h4>
+                    <h6 class="blog-thumbnail">Հայաո Միյաձակին ճապոնացի անիմացիոն ռեժիսոր, պրոդյուսեր, սցենարիստ է,
+                        գրող և մանգակա...</h6>
+                </div>
+            </div>
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/Hiragana.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Հունվ 23, 2023</h6>
+                    <h4 class="blog-title">Հիրագանա</h4>
+                    <h6 class="blog-thumbnail">Հիրագանան վանկային այբուբեն է, ուստի բոլոր բաղաձայն տառերը (բացի "n"-ից)
+                        զուգակցված են
+                        ձայնավորներով։ Այբուբենը սկսվում է ձայնավորներով՝ A I U E O, և շարունակվում է...</h6>
+                </div>
+            </div>
+            <div class="blog-small">
+                <img class="blog-image" src="~/img/blog/Katakana.jpg" alt="">
+                <div class="blog-content">
+                    <h6 class="blog-date">Հունվ 20, 2023</h6>
+                    <h4 class="blog-title">Կատականա</h4>
+                    <h6 class="blog-thumbnail">Ճապոներենում, բացի Հիրագանայից, կա ևս մեկ այբուբեն՝ 46-ով
+                        նիշով, որը
+                        կոչվում է Կատականա։ Կատականայում տառերը նույնն են...</h6>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn-main btn-loadmore">Ավելին</button>
+        </div>
+    </div>
+</section>
+    <section class="videos-section">
+    <div class="container-custom">
+        <h2 class="block-title">Տեսանյութեր լեզվի մասին</h2>
+        <div class="videos-block">
+            @foreach(var video in Model.Take(4))
+            {
+                <a asp-action="Watch" asp-controller="Video" asp-route-Id="@video.Id" class="video-link">
+                    <img src="~/img/about-language/PlayButton.svg" alt="" class="btn-play">
+                    <div class="video-content">
+                        <h4 class="video-title">@video.Title</h4>
+                    </div>
+                </a>
+            }
+        </div>
+        <div class="slider-points d-flex justify-content-center">
+            <a href="" class="slider-point me-3 active-point"></a>
+            <a href="" class="slider-point me-3"></a>
+            <a href="" class="slider-point"></a>
+        </div>
+    </div>
+</section>
+
+    <section class="news-section">
+    <div class="container-custom">
+        <h2 class="block-title">Նորություններ</h2>
+        <h4 class="news-about">Լեզվական ծրագրերի և միջազգային մրցույթների մասին տեղեկատվական տախտակ</h4>
+        <div class="articles">
+            <div class="article">
+                <img class="article-logo" src="~/img/news/mextLogo.png" alt="Mext">
+                <div class="article-content">
+                    <h6 class="article-date">
+                        2023/05/26
+                    </h6>
+                    <h5 class="article-title">
+                        MEXT - Ճապոնիա
+                    </h5>
+                    <h4 class="article-info">
+                        Ճապոնիայի կրթության, մշակույթի, սպորտի, գիտության և տեխնոլոգիաների նախարարությունը հայտարարում է
+                        օտարերկրյա ուսանողների հավաքագրում, ովքեր ցանկանում են սովորել Ճապոնիայում՝ Ճապոնիայի կառավարություն
+                        կրթաթոշակով. Խնդրում ենք նրանց, ովքեր ցանկանում են դիմել «Inter-Researcher» ծրագրին
+                        ուշադիր կարդացեք հրահանգները և տրամադրեք անհրաժեշտ փաստաթղթերը նշվածի սահմաններում
+                        ժամանակային շրջանակ:
+                    </h4>
+                </div>
+                <button type="button" class="btn-outline">Կարդալ ավելին</button>
+            </div>
+            <div class="article">
+                <img class="article-logo" src="~/img/news/mextLogo.png" alt="Mext">
+                <div class="article-content">
+                    <h6 class="article-date">
+                        2023/06/15
+                    </h6>
+                    <h5 class="article-title">
+                        MEXT - Ճապոնիա
+                    </h5>
+                    <h4 class="article-info">
+                        Ճապոնիայի կրթության, մշակույթի, սպորտի, գիտության և տեխնոլոգիաների նախարարությունը հայտարարում է
+                        օտարերկրյա ուսանողների հավաքագրում, ովքեր ցանկանում են սովորել Ճապոնիայում՝ Ճապոնիայի կառավարություն
+                        կրթաթոշակով. Խնդրում ենք նրանց, ովքեր ցանկանում են դիմել «Inter-Researcher» ծրագրին
+                        ուշադիր կարդացեք հրահանգները և տրամադրեք անհրաժեշտ փաստաթղթերը նշվածի սահմաններում
+                        ժամանակային շրջանակ:
+                    </h4>
+                </div>
+                <button type="button" class="btn-outline">Կարդալ ավելին</button>
+            </div>
+        </div>
+        <button type="button" class="btn-main btn-articles">Տես ավելի շատ հոդվածներ</button>
+    </div>
+</section>
+
+    <section class="rates-section">
+    <div class="container-custom">
+        <h2 class="block-title rates-title">Առաջարկություններ մեր ուսանողներից</h2>
+        <div class="comments-slider">
+            <a href="#" class="left-slide"></a>
+            <div class="comments-block">
+                <div class="comment">
+                    <div class="comment-content">
+                        <div class="comment-stars">
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                        </div>
+                        <h4 class="comment-text">«LingWo» դպրոցի դասերի շնորհիվ տղաս սիրահարվեց
+                            անգլերենին,
+                            անհամբեր սպասում է դասերին, և դպրոցում նրա գնահատականները նույնպես շատ լավ են բարձրացել:
+                            Շնորհակալություն ուսուցիչ ձեր քրտնաջան աշխատանքի համար:</h4>
+                        <div class="comment-info">
+                            <h4 class="comment-sender">Իրինա, </h4>
+                            <h4 class="comment-date">1 ժամ առաջ</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-content">
+                        <div class="comment-stars">
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                        </div>
+                        <h4 class="comment-text">«LingWo» դպրոցի դասերի շնորհիվ տղաս սիրահարվեց
+                            անգլերենին,
+                            անհամբեր սպասում է դասերին, և դպրոցում նրա գնահատականները նույնպես շատ լավ են բարձրացել:
+                            Շնորհակալություն ուսուցիչ ձեր քրտնաջան աշխատանքի համար:</h4>
+                        <div class="comment-info">
+                            <h4 class="comment-sender">Իրինա, </h4>
+                            <h4 class="comment-date">1 ժամ առաջ</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-content">
+                        <div class="comment-stars">
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                        </div>
+                        <h4 class="comment-text">«LingWo» դպրոցի դասերի շնորհիվ տղաս սիրահարվեց
+                            անգլերենին,
+                            անհամբեր սպասում է դասերին, և դպրոցում նրա գնահատականները նույնպես շատ լավ են բարձրացել:
+                            Շնորհակալություն ուսուցիչ ձեր քրտնաջան աշխատանքի համար:</h4>
+                        <div class="comment-info">
+                            <h4 class="comment-sender">Իրինա, </h4>
+                            <h4 class="comment-date">1 ժամ առաջ</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-content">
+                        <div class="comment-stars">
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 0L15.9187 8.98278H25.3637L17.7225 14.5344L20.6412 23.5172L13 17.9656L5.35879 23.5172L8.27747 14.5344L0.636266 8.98278H10.0813L13 0Z"
+                                    fill="#8C1AC4" />
+                            </svg>
+                        </div>
+                        <h4 class="comment-text">«LingWo» դպրոցի դասերի շնորհիվ տղաս սիրահարվեց
+                            անգլերենին,
+                            անհամբեր սպասում է դասերին, և դպրոցում նրա գնահատականները նույնպես շատ լավ են բարձրացել:
+                            Շնորհակալություն ուսուցիչ ձեր քրտնաջան աշխատանքի համար:</h4>
+                        <div class="comment-info">
+                            <h4 class="comment-sender">Իրինա, </h4>
+                            <h4 class="comment-date">1 ժամ առաջ</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="right-slide"></a>
+        </div>
+    </div>
+</section>
+}

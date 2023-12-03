@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LingWo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/LingWo.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <partial name="_HomeHeaderPartial">
+    </header>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top">
+        <div class="container-custom footer-content">
+            <div class="footer-text">
+                <img class="footer-logo" src="~/img/LogoFooter.svg" alt="">
+                <h4 class="footer-description">Լեզուներ սովորելը կդառնա ավելի հեշտ, հարմար և ավելին
+                    հասանելի է Lingwo-ում:
+                    Դպրոցն առաջարկում է առցանց դասեր անգլերեն և ճապոներեն լեզուներով՝ որակյալ ուսուցիչներով:</h4>
+            </div>
+            <div class="footer-links">
+                <div class="about-us-links">
+                    <h4 class="links-title">Մեր մասին</h4>
+                    <ul class="footer-list">
+                        <li class="footer-item"><a class="footer-link" href="#">Բլոգ</a></li>
+                        <li class="footer-item"><a class="footer-link" href="#">Թեստեր</a></li>
+                        <li class="footer-item"><a class="footer-link" href="#">Գրադարան</a></li>
+                        <li class="footer-item"><a class="footer-link" href="#">Աշխատանք</a></li>
+                    </ul>
+                </div>
+                <div class="languages-links">
+                    <h4 class="links-title">Լեզուներ</h4>
+                    <ul class="footer-list">
+                        <li class="footer-item"><a class="footer-link" href="#">Անգլերեն</a></li>
+                        <li class="footer-item"><a class="footer-link" class="footer-link" href="#">Ճապոներեն</a></li>
+                    </ul>
+                </div>
+                <div class="support-links">
+                    <h4 class="links-title">Օգնություն</h4>
+                    <a class="footer-link" href="#">Կոնտակտներ</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright container-custom">
+            <span class="copyright">2023 Lingwo Baker Street, London - All Rights Reserved</span>
+            <div class="socials">
+                <a href="#"><img src="~/img/YoutubeLogo.svg" alt=""></a>
+                <a href="#"><img src="~/img/InstagramLogo.svg" alt=""></a>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
